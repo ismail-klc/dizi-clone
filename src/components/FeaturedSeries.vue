@@ -5,17 +5,19 @@
       v-for="(img, index) in images"
       :key="index"
     >
-      <img class="rounded-lg" :src="img" :alt="img" />
-      <div class="absolute px-2 text-sm font-semibold rounded-xl top-2 right-2 text-white bg-[#1e2029]">2019</div>
-      <div class="py-2 pl-3 space-y-1">
-        <div class="text-sm font-semibold text-gray-500">Suç,Gizem,Aksiyon</div>
-        <div class="flex items-center justify-between text-white">
-          <span>La casa de papel</span>
-          <button>
-            <EvaMoreVerticalFill />
-          </button>
+      <router-link :to="{ name: 'Detay', params: { slug: 'la-casa-de-papel' } }">
+        <img class="rounded-lg" :src="img" :alt="img" />
+        <div class="absolute px-2 text-sm font-semibold rounded-xl top-2 right-2 text-white bg-[#1e2029]">2019</div>
+        <div class="py-2 pl-3 space-y-1">
+          <div class="text-sm font-semibold text-gray-500">Suç,Gizem,Aksiyon</div>
+          <div class="flex items-center justify-between text-white">
+            <span>La casa de papel</span>
+            <button>
+              <EvaMoreVerticalFill />
+            </button>
+          </div>
         </div>
-      </div>
+      </router-link>
     </swiper-slide>
   </swiper>
 </template>

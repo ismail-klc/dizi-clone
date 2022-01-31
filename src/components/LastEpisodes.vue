@@ -19,18 +19,15 @@
 
     <!-- episodes -->
     <div class="grid grid-cols-1 px-4 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-3">
-      <div v-for="i in 16" :key="i" class="bg-[#1e2029] flex p-2 relative">
-        <img
-          class="object-cover w-11 h-11 shrink-0"
-          src="../assets/episode.avif"
-          alt=""
-        />
+      <router-link :to="{ name: 'Detay', params: { slug: 'la-casa-de-papel' } }" v-for="i in 16" :key="i" 
+        class="bg-[#1e2029] flex p-2 relative hover:bg-[#353741] transition-all rounded-sm">
+        <img class="object-cover w-11 h-11 shrink-0" src="../assets/episode.avif" alt="" />
         <div class="flex flex-col justify-center min-w-0 mx-4">
           <span class="text-xs font-semibold text-white truncate">Secrets of Sulphur Springs</span>
           <span class="text-xs font-semibold text-gray-400">2. Sezon 8. Bölüm</span>
         </div>
         <div class="absolute text-xs font-semibold rounded-lg bg-[#14151d] py-0.5 px-1 text-gray-400 -top-2 -right-2">31 Ocak</div>
-      </div>
+      </router-link>
     </div>
     <!-- episodes end -->
 

@@ -4,7 +4,7 @@
       <img class="h-8 ml-6" src="../assets/logo.png" />
     </div>
 
-    <p class="mt-4 text-xs font-semibold text-gray-400">
+    <p class="p-6 text-xs font-semibold text-gray-400">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusamus esse ex provident, pariatur sequi ratione odit doloribus. Aliquam nostrum
       voluptate quod praesentium iusto illum, sapiente blanditiis libero. Officiis, nobis animi a, adipisci culpa illum numquam cum ab ipsa eos natus nulla
       excepturi! Inventore nemo voluptatum repudiandae omnis quos. Minima, pariatur consequuntur culpa, quibusdam, dolore labore aut fugiat iure facilis eum

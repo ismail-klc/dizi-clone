@@ -7,6 +7,11 @@ const routes = [
         component: () => import("../views/Home.vue")
     },
     {
+        name: "Detay",
+        path: "/dizi/:slug",
+        component: () => import("../views/Detail.vue")
+    },
+    {
         name: "Keşfet",
         path: "/kesfet",
         component: () => import("../views/Home.vue")
