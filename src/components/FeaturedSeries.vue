@@ -30,9 +30,9 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
 const images = [
-  "../src/assets/la-casa-de-papel--1632741922.jpg",
-  "../src/assets/peaky-blinders--1632742820.jpg",
-  "../src/assets/witcher.jpg",
+  "../assets/la-casa-de-papel--1632741922.jpg",
+  "../assets/peaky-blinders--1632742820.jpg",
+  "../assets/witcher.jpg",
 ];
 
 const modules = [Navigation, Scrollbar, A11y, Autoplay];
