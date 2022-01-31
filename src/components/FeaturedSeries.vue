@@ -1,11 +1,11 @@
 <template>
-  <swiper class="w-full h-full pb-4" loop={true} :autoplay="autoplay" :modules="modules" :slides-per-view="count" :space-between="10" navigation>
+  <swiper class="w-full h-full pb-4" loop="{true}" :autoplay="autoplay" :modules="modules" :slides-per-view="count" :space-between="10" navigation>
     <swiper-slide
       class="p-1 relative cursor-pointer transition-all delay-75 hover:bg-[#2b2d36] rounded-lg inline-flex flex-col bg-[#1e2029]"
       v-for="(img, index) in images"
       :key="index"
     >
-      <img class="rounded-lg" :src="img" alt="series-img" />
+      <img class="rounded-lg" :src="img" :alt="img" />
       <div class="absolute px-2 text-sm font-semibold rounded-xl top-2 right-2 text-white bg-[#1e2029]">2019</div>
       <div class="py-2 pl-3 space-y-1">
         <div class="text-sm font-semibold text-gray-500">Suç,Gizem,Aksiyon</div>
@@ -29,11 +29,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
-const images = [
-  "../assets/la-casa-de-papel--1632741922.jpg",
-  "../assets/peaky-blinders--1632742820.jpg",
-  "../assets/witcher.jpg",
-];
+const images = ["img/la-casa-de-papel--1632741922.jpg", "img/peaky-blinders--1632742820.jpg", "img/witcher.jpg"];
 
 const modules = [Navigation, Scrollbar, A11y, Autoplay];
 const count = ref(window.innerWidth > 480 ? 3 : 1);
