@@ -30,10 +30,9 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
 const images = [
-  "https://file.diziroll.me/images/324/182/100//the-witcher-kapak--1631284883.jpg",
-  "https://file.diziroll.me/images/324/182/100//peaky-blinders--1632742820.jpg",
-  "https://file.diziroll.me/images/324/182/100//sex-education--1632742643.jpg",
-  "https://file.diziroll.me/images/324/182/100//la-casa-de-papel--1632741922.jpg",
+  "../src/assets/la-casa-de-papel--1632741922.jpg",
+  "../src/assets/peaky-blinders--1632742820.jpg",
+  "../src/assets/witcher.jpg",
 ];
 
 const modules = [Navigation, Scrollbar, A11y, Autoplay];
