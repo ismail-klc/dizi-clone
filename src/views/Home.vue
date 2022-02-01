@@ -17,9 +17,11 @@ const shows = ref([]);
 
 onMounted(async () => {
   for (let i = 0; i < 6; i++) {
-    const id = Math.round(Math.random() * 100);
-    const res = await appAxios(`shows/${id}`);
-    shows.value.push(res.data);
+    const id = Math.round(Math.random() * 200);
+    try {
+      const res = await appAxios(`shows/${id}`);
+      shows.value.push(res.data);
+    } catch (error) {}
   }
 });
 </script>

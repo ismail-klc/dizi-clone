@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div :class="show.status === 'Ended' ? 'bg-red-600' : 'bg-green-600'" class="inline-flex px-3 py-1 mb-2 text-white rounded-sm">
+      {{ show.status === "Ended" ? "Final Yaptı" : "Devam Ediyor" }}
+    </div>
     <div class="flex items-center justify-between">
       <h1 class="text-3xl text-white">
         {{ show.name }} <span class="text-gray-400">({{ show.premiered?.slice(0, 4) }})</span>
@@ -18,7 +21,7 @@
         <!-- cast end -->
       </div>
 
-      <div class="flex flex-col mt-4 text-xs lg:mt-0">
+      <div class="flex flex-col flex-1 mt-4 text-xs lg:mt-0">
         <h2 class="text-white uppercase">Genel bakış</h2>
         <p class="mt-3 text-gray-600" v-html="show.summary"></p>
 
@@ -65,7 +68,7 @@
           <div class="flex flex-1 border-l border-[#1e2029]">
             <ul class="w-full text-white">
               <li v-for="(item, index) in episodes.filter((x) => x.season === currentSeason)" :key="item.id" class="px-4 py-3 flex border-b border-[#1e2029]">
-                <Checkbox :title="'Bölüm ' + parseInt(index+1)" :key="item.id" />
+                <Checkbox :title="'Bölüm ' + parseInt(index + 1)" :key="item.id" />
                 <h6 class="flex-1 ml-6 font-semibold text-white truncate cursor-pointer hover:text-green-700">{{ item.name }}</h6>
                 <!-- date -->
                 <span class="ml-3 text-gray-600">{{ item.airdate }}</span>
@@ -112,7 +115,7 @@ onMounted(async () => {
 });
 
 const infos = computed(() => [
-  { name: "Dil", value: show.value.language },
+  { name: "Ülke", value: show.value.network?.country.name },
   { name: "Süre", value: "40 dk" },
   { name: "Takipçi", value: "18685" },
   { name: "IMDB", value: show.value.rating?.average },
