@@ -14,7 +14,7 @@
         <img class="object-cover max-h-[350px] md:max-h-fit w-full lg:max-h-fit md:w-auto" :src="show.image?.original" alt="asd" />
 
         <!-- cast -->
-        <Cast :cast="cast"/>
+        <Cast :cast="cast" />
         <!-- cast end -->
       </div>
 
@@ -43,7 +43,7 @@
         <!-- trailer end -->
 
         <div class="flex flex-col min-w-0 mt-4 space-y-2 text-white md:items-center md:flex-row md:justify-between">
-          <h4 class="font-semibold uppercase">{{show.name}} DİZİSİNİN TÜM SEZON VE BÖLÜMLERİ</h4>
+          <h4 class="font-semibold uppercase">{{ show.name }} DİZİSİNİN TÜM SEZON VE BÖLÜMLERİ</h4>
           <Checkbox :key="0" :title="'Tümünü izlendi olarak işaretle'" />
         </div>
 
@@ -51,16 +51,24 @@
         <div class="flex flex-col md:flex-row mt-4 border border-[#1e2029]">
           <div class="flex border border-[#1e2029]">
             <ul class="flex flex-row min-w-0 overflow-x-auto text-gray-600 md:flex-col">
-              <li v-for="i in 5" :key="i" class="px-4 py-3 cursor-pointer uppercase border-r shrink-0 md:border-b border-[#1e2029]">Sezon {{ i }}</li>
+              <li
+                v-for="i in seasons.length"
+                :key="i"
+                :class="currentSeason === i && 'border border-green-800'"
+                @click="currentSeason = i"
+                class="px-4 py-3 cursor-pointer uppercase border-r shrink-0 md:border-b border-[#1e2029]"
+              >
+                Sezon {{ i }}
+              </li>
             </ul>
           </div>
           <div class="flex flex-1">
             <ul class="w-full text-white">
-              <li v-for="i in 20" :key="i" class="px-4 py-3 flex border-b border-[#1e2029]">
-                <Checkbox :title="'Bölüm ' + i" :key="i" />
-                <h6 class="flex-1 ml-6 font-semibold text-white truncate cursor-pointer hover:text-green-700">{{ i }}. Bölüm</h6>
+              <li v-for="(item, index) in episodes.filter((x) => x.season === currentSeason)" :key="item.id" class="px-4 py-3 flex border-b border-[#1e2029]">
+                <Checkbox :title="'Bölüm ' + parseInt(index+1)" :key="item.id" />
+                <h6 class="flex-1 ml-6 font-semibold text-white truncate cursor-pointer hover:text-green-700">{{ item.name }}</h6>
                 <!-- date -->
-                <span class="text-gray-600">1 Ocak 2022</span>
+                <span class="ml-3 text-gray-600">{{ item.airdate }}</span>
               </li>
             </ul>
           </div>
@@ -80,6 +88,9 @@ import appAxios from "../utils/appAxios";
 
 const show = ref({});
 const cast = ref([]);
+const seasons = ref([]);
+const episodes = ref([]);
+const currentSeason = ref(1);
 
 const router = useRouter();
 onMounted(async () => {
@@ -91,12 +102,17 @@ onMounted(async () => {
   show.value = res.data;
 
   res = await appAxios.get(`shows/${show.value.id}/cast`);
-  cast.value = res.data.slice(0,5);
-  console.log(cast.value);
+  cast.value = res.data.slice(0, 5);
+
+  res = await appAxios.get(`shows/${show.value.id}/seasons`);
+  seasons.value = res.data;
+
+  res = await appAxios.get(`shows/${show.value.id}/episodes`);
+  episodes.value = res.data;
 });
 
 const infos = computed(() => [
-  { name: "Dil", value: show.value.language},
+  { name: "Dil", value: show.value.language },
   { name: "Süre", value: "40 dk" },
   { name: "Takipçi", value: "18685" },
   { name: "IMDB", value: show.value.rating?.average },
