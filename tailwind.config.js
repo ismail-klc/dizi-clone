@@ -8,7 +8,10 @@ module.exports = {
     extend: {
       screens: {
         "min": "480px"
-      }
+      },
+      aspectRatio: {
+        '3/2': '3 / 2',
+      },
     },
   },
   plugins: [],

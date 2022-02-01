@@ -1,17 +1,27 @@
 <template>
-  <swiper class="w-full h-full pb-4" loop="{true}" :autoplay="autoplay" :modules="modules" :slides-per-view="count" :space-between="10" navigation>
+  <swiper class="w-full h-full pb-4" :autoplay="autoplay" :modules="modules" :slides-per-view="count" :space-between="10" navigation>
     <swiper-slide
       class="p-1 relative cursor-pointer transition-all delay-75 hover:bg-[#2b2d36] rounded-lg inline-flex flex-col bg-[#1e2029]"
-      v-for="(img, index) in images"
+      v-for="(show, index) in shows"
       :key="index"
     >
-      <router-link :to="{ name: 'Detay', params: { slug: 'la-casa-de-papel' } }">
-        <img class="rounded-lg" :src="img" :alt="img" />
-        <div class="absolute px-2 text-sm font-semibold rounded-xl top-2 right-2 text-white bg-[#1e2029]">2019</div>
+      <router-link
+        :to="{
+          name: 'Detay',
+          params: {
+            slug: show.name
+              .toLowerCase()
+              .replace(/ /g, '-')
+              .replace(/[^\w-]+/g, ''),
+          },
+        }"
+      >
+        <img class="object-cover w-full rounded-lg aspect-3/2" :src="show.image.medium" :alt="img" />
+        <div class="absolute px-2 text-sm font-semibold rounded-xl top-2 right-2 text-white bg-[#1e2029]">{{ show.premiered.slice(0, 4) }}</div>
         <div class="py-2 pl-3 space-y-1">
-          <div class="text-sm font-semibold text-gray-500">Suç,Gizem,Aksiyon</div>
+          <div class="text-sm font-semibold text-gray-500">{{ show.genres[0] }}</div>
           <div class="flex items-center justify-between text-white">
-            <span>La casa de papel</span>
+            <span>{{ show.name }}</span>
             <button>
               <EvaMoreVerticalFill />
             </button>
@@ -23,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref } from "@vue/runtime-core";
+import { ref } from "vue";
 import EvaMoreVerticalFill from "./Icons/EvaMoreVerticalFill.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Scrollbar, A11y, Autoplay } from "swiper";
@@ -31,7 +41,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
-const images = ["img/la-casa-de-papel--1632741922.jpg", "img/peaky-blinders--1632742820.jpg", "img/witcher.jpg"];
+defineProps({
+  shows: Array,
+});
 
 const modules = [Navigation, Scrollbar, A11y, Autoplay];
 const count = ref(window.innerWidth > 480 ? 3 : 1);
