@@ -20,13 +20,14 @@
     <div class="mt-8">
       <h3 class="text-white uppercase">Oyunculuk</h3>
       <div class="flex flex-col mt-7" v-for="(show, index) in shows" :key="index">
-        <h2 class="text-lg text-white truncate">{{ show._embedded.show.name }} 
-            <span v-if="show._embedded.show.rating.average" class="p-1 bg-green-600 rounded-lg">{{ show._embedded.show.rating.average }}</span>
+        <h2 class="text-lg text-white truncate">
+          {{ show._embedded.show.name }}
+          <span v-if="show._embedded.show.rating.average" class="p-1 bg-green-600 rounded-lg">{{ show._embedded.show.rating.average }}</span>
         </h2>
         <p class="text-xs text-gray-400">{{ getGenres(show._embedded.show.genres) }}</p>
 
         <div class="flex flex-col mt-3 text-gray-300 sm:flex-row">
-          <img :src="show._embedded.show.image.medium" alt="" class="max-w-[200px]" />
+          <img :src="show._embedded.show.image?.medium" alt="" class="max-w-[200px]" />
           <div class="flex flex-col flex-1 mt-2 text-sm text-justify sm:mt-0 sm:ml-4" v-html="show._embedded.show.summary"></div>
         </div>
       </div>
@@ -54,7 +55,6 @@ onMounted(async () => {
 
   res = await appAxios.get(`people/${cast.value.id}/castcredits?embed=show`);
   shows.value = res.data;
-  console.log(shows.value);
 });
 
 const getGenres = (genres) => {

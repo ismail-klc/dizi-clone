@@ -100,7 +100,6 @@ onMounted(async () => {
   const slug = router.currentRoute.value.params.slug.toString();
   let searchSlug = slug.split("-").join("+");
 
-  console.log(searchSlug);
   let res = await appAxios.get(`singlesearch/shows?q=${searchSlug}`);
   show.value = res.data;
 
