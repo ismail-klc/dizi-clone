@@ -116,7 +116,7 @@ onMounted(async () => {
 
 const infos = computed(() => [
   { name: "Ülke", value: show.value.network?.country.name },
-  { name: "Süre", value: "40 dk" },
+  { name: "Süre", value: show.value.averageRuntime + " dk" },
   { name: "Takipçi", value: "18685" },
   { name: "IMDB", value: show.value.rating?.average },
   { name: "Yapım Yılı", value: show.value.premiered?.slice(0, 4) },
