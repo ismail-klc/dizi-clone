@@ -19,7 +19,7 @@
         <img class="object-cover w-full rounded-lg aspect-3/2" :src="show.image.medium" :alt="img" />
         <div class="absolute px-2 text-sm font-semibold rounded-xl top-2 right-2 text-white bg-[#1e2029]">{{ show.premiered.slice(0, 4) }}</div>
         <div class="py-2 pl-3 space-y-1">
-          <div class="text-sm font-semibold text-gray-500">{{ show.genres[0] }}</div>
+          <div class="text-sm font-semibold text-gray-500">{{ getGenres(show.genres) }}</div>
           <div class="flex items-center justify-between text-white">
             <span>{{ show.name }}</span>
             <button>
@@ -52,6 +52,10 @@ const autoplay = ref({ delay: 3000, disableOnInteraction: false });
 window.addEventListener("resize", () => {
   count.value = window.innerWidth > 480 ? 3 : 1;
 });
+
+const getGenres = (genres) => {
+  return genres.join(",");
+};
 </script>
 
 <style>
