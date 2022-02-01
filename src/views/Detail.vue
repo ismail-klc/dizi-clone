@@ -11,7 +11,7 @@
 
     <div class="flex flex-col mt-6 lg:flex-row lg:space-x-8">
       <div class="flex flex-col lg:w-[320px] shrink-0 md:flex-row lg:flex-col">
-        <img class="object-cover max-h-[350px] md:max-h-fit w-full lg:max-h-fit md:w-auto" :src="show.image?.original" alt="asd" />
+        <img class="object-cover max-h-[350px] md:max-h-[405px] w-full lg:max-h-fit md:w-auto" :src="show.image?.original" alt="asd" />
 
         <!-- cast -->
         <Cast :cast="cast" />
@@ -49,12 +49,12 @@
 
         <!-- episodes -->
         <div class="flex flex-col md:flex-row mt-4 border border-[#1e2029]">
-          <div class="flex border border-[#1e2029]">
+          <div class="flex">
             <ul class="flex flex-row min-w-0 overflow-x-auto text-gray-600 md:flex-col">
               <li
                 v-for="i in seasons.length"
                 :key="i"
-                :class="currentSeason === i && 'border border-green-800'"
+                :class="currentSeason === i && 'border-r-none border-l border-green-800'"
                 @click="currentSeason = i"
                 class="px-4 py-3 cursor-pointer uppercase border-r shrink-0 md:border-b border-[#1e2029]"
               >
@@ -62,7 +62,7 @@
               </li>
             </ul>
           </div>
-          <div class="flex flex-1">
+          <div class="flex flex-1 border-l border-[#1e2029]">
             <ul class="w-full text-white">
               <li v-for="(item, index) in episodes.filter((x) => x.season === currentSeason)" :key="item.id" class="px-4 py-3 flex border-b border-[#1e2029]">
                 <Checkbox :title="'Bölüm ' + parseInt(index+1)" :key="item.id" />
