@@ -27,7 +27,7 @@
           :key="index"
           class="w-full flex mt-1 items-center hover:bg-[#393b44] bg-[#2b2d36] p-2"
         >
-          <img :src="item.show?.image.medium" class="w-6 h-6" alt="image" />
+          <img :src="item.show?.image?.medium" class="w-6 h-6" alt="image" />
           <span class="ml-2 text-xs">{{ item.show?.name }}</span>
         </router-link>
       </div>
