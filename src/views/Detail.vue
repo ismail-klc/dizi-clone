@@ -83,7 +83,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import Cast from "../components/Cast.vue";
 import Checkbox from "../components/Checkbox.vue";
@@ -97,6 +97,10 @@ const currentSeason = ref(1);
 
 const router = useRouter();
 onMounted(async () => {
+  getShow();
+});
+
+const getShow = async () => {
   const slug = router.currentRoute.value.params.slug.toString();
   let searchSlug = slug.split("-").join("+");
 
@@ -111,7 +115,14 @@ onMounted(async () => {
 
   res = await appAxios.get(`shows/${show.value.id}/episodes`);
   episodes.value = res.data;
-});
+};
+
+watch(
+  () => router.currentRoute.value.params.slug,
+  () => {
+    getShow();
+  }
+);
 
 const infos = computed(() => [
   { name: "Ülke", value: show.value.network?.country.name },

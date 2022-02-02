@@ -5,7 +5,7 @@
       <img src="../assets/logo.png" class="h-8 ml-3 sm:ml-10 md:ml-6" />
     </router-link>
 
-    <NavSearch />
+    <NavSearch :nav_class="'flex-1 hidden ml-12 space-x-6 md:flex'"/>
   </div>
 
   <div :class="style" class="absolute md:hidden z-50 border-b text-white border-[#1e2029] overflow-hidden transition-all bg-[#14161d]">
