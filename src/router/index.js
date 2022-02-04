@@ -12,6 +12,11 @@ const routes = [
         component: () => import("../views/Detail.vue")
     },
     {
+        name: "Episode",
+        path: "/dizi/:slug/sezon-:seasonId/bolum-:bolumId",
+        component: () => import("../views/Episode.vue")
+    },
+    {
         name: "Oyuncu",
         path: "/oyuncular/:slug",
         component: () => import("../views/People.vue")

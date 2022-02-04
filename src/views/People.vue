@@ -20,10 +20,24 @@
     <div class="mt-8">
       <h3 class="text-white uppercase">Oyunculuk</h3>
       <div class="flex flex-col mt-7" v-for="(show, index) in shows" :key="index">
-        <h2 class="text-lg text-white truncate">
+        <router-link
+          :to="{
+            name: 'Detay',
+            params: {
+              slug:
+                show._embedded.show.name
+                  .toLowerCase()
+                  .replace(/ /g, '-')
+                  .replace(/[^\w-]+/g, '') +
+                '-' +
+                show._embedded.show.id,
+            },
+          }"
+          class="text-lg text-white truncate hover:text-zinc-300"
+        >
           {{ show._embedded.show.name }}
-          <span v-if="show._embedded.show.rating.average" class="p-1 bg-green-600 rounded-lg">{{ show._embedded.show.rating.average }}</span>
-        </h2>
+          <span v-if="show._embedded.show.rating.average" class="p-1 bg-green-600 rounded-lg">{{ show._embedded.show.rating.average }}</span> </router-link
+        >
         <p class="text-xs text-gray-400">{{ getGenres(show._embedded.show.genres) }}</p>
 
         <div class="flex flex-col mt-3 text-gray-300 sm:flex-row">

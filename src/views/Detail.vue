@@ -69,7 +69,25 @@
             <ul class="w-full text-white">
               <li v-for="(item, index) in episodes.filter((x) => x.season === currentSeason)" :key="item.id" class="px-4 py-3 flex border-b border-[#1e2029]">
                 <Checkbox :title="'Bölüm ' + parseInt(index + 1)" :key="item.id" />
-                <h6 class="flex-1 ml-6 font-semibold text-white truncate cursor-pointer hover:text-green-700">{{ item.name }}</h6>
+                <router-link
+                  :to="{
+                    name: 'Episode',
+                    params: {
+                      slug:
+                        show.name
+                          .toLowerCase()
+                          .replace(/ /g, '-')
+                          .replace(/[^\w-]+/g, '') +
+                        '-' +
+                        show.id,
+                      seasonId: currentSeason,
+                      bolumId: parseInt(index + 1),
+                    },
+                  }"
+                  class="flex-1 ml-6 font-semibold text-white truncate cursor-pointer hover:text-green-700"
+                >
+                  {{ item.name }}
+                </router-link>
                 <!-- date -->
                 <span class="ml-3 text-gray-600">{{ item.airdate }}</span>
               </li>
@@ -101,19 +119,22 @@ onMounted(async () => {
 });
 
 const getShow = async () => {
-  const slug = router.currentRoute.value.params.slug.toString();
-  let searchSlug = slug.split("-").join("+");
+  const slugs = router.currentRoute.value.params.slug?.toString().split("-") || [];
+  const id = slugs[slugs.length - 1];
+  if (!id) {
+    return;
+  }
 
-  let res = await appAxios.get(`singlesearch/shows?q=${searchSlug}`);
+  let res = await appAxios.get(`shows/${id}`);
   show.value = res.data;
 
-  res = await appAxios.get(`shows/${show.value.id}/cast`);
+  res = await appAxios.get(`shows/${id}/cast`);
   cast.value = res.data.slice(0, 5);
 
-  res = await appAxios.get(`shows/${show.value.id}/seasons`);
+  res = await appAxios.get(`shows/${id}/seasons`);
   seasons.value = res.data;
 
-  res = await appAxios.get(`shows/${show.value.id}/episodes`);
+  res = await appAxios.get(`shows/${id}/episodes`);
   episodes.value = res.data;
 };
 

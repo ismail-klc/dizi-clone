@@ -2,7 +2,7 @@
   <div class="mt-10">
     <!-- header -->
     <div class="flex border-b border-[#1e2029] pb-4 justify-between overflow-x-auto">
-      <h2 class="mr-4 text-xl text-white shrink-0">Güncel Bölümler</h2>
+      <h2 class="mr-4 text-xl text-white shrink-0">Gelecek Bölümler</h2>
       <div class="flex space-x-6 shrink-0">
         <button class="flex items-center space-x-2 text-white">
           <PhMonitorPlayFill />
@@ -21,19 +21,24 @@
     <div class="grid grid-cols-1 px-4 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-3">
       <router-link
         :to="{
-          name: 'Detay',
+          name: 'Episode',
           params: {
-            slug: item.show?.name
-              .toLowerCase()
-              .replace(/ /g, '-')
-              .replace(/[^\w-]+/g, ''),
+            slug:
+              item.show?.name
+                .toLowerCase()
+                .replace(/ /g, '-')
+                .replace(/[^\w-]+/g, '') +
+              '-' +
+              item.show.id,
+            seasonId: item.season,
+            bolumId: item.number
           },
         }"
         v-for="item in lastEpisodes"
         :key="item.id"
         class="bg-[#1e2029] flex p-2 relative hover:bg-[#353741] transition-all rounded-sm"
       >
-        <img class="object-cover w-11 h-11 shrink-0" :src="item.show?.image.medium" alt="" />
+        <img class="object-cover w-11 h-11 shrink-0" :src="item.show?.image?.medium" alt="" />
         <div class="flex flex-col justify-center min-w-0 mx-4">
           <span class="text-xs font-semibold text-white truncate">{{ item.show.name }}</span>
           <span class="text-xs font-semibold text-gray-400">{{ item.season }}. Sezon {{ item.number }}. Bölüm</span>
@@ -59,6 +64,5 @@ defineProps({
   lastEpisodes: Array,
 });
 
-const date = (airstamp) => DateTime.fromISO(airstamp).toLocaleString({ month: 'long', day: 'numeric' });
-console.log(date(new Date()));
+const date = (airstamp) => DateTime.fromISO(airstamp).toLocaleString({ month: "long", day: "numeric" });
 </script>
