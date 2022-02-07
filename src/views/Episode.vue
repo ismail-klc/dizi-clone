@@ -27,7 +27,8 @@
 
     <!-- video -->
     <div>
-      <div class="w-full bg-black aspect-video"></div>
+      <!-- <div class="w-full bg-black aspect-video"></div> -->
+      <iframe class="w-full aspect-video" :src="'https://www.youtube.com/embed/' + video?.id?.videoId"> </iframe>
     </div>
     <!-- video end -->
 
@@ -36,7 +37,9 @@
       <h4 class="text-sm uppercase">Genel bakış</h4>
       <div class="border border-[#1e2029] mt-4">
         <div class="flex border-b border-[#1e2029] px-3 py-4">
-          <img :src="data.image?.medium" class="object-cover w-16 aspect-square" alt="" />
+          <img v-if="data?.image?.medium" :src="data.image?.medium" class="object-cover w-16 aspect-square" alt="" />
+          <div v-else class="object-cover w-16 bg-black aspect-square"></div>
+          
           <div class="flex flex-col justify-between ml-2">
             <router-link
               :to="{
@@ -77,6 +80,7 @@ import { DateTime } from "luxon";
 
 const router = useRouter();
 const data = ref({});
+const video = ref("");
 
 const { slug, seasonId, bolumId } = router.currentRoute.value.params;
 const slugs = slug.toString().split("-");
@@ -87,9 +91,12 @@ showName.pop();
 showName = showName.join(" ");
 
 onMounted(async () => {
-  const res = await appAxios.get(`shows/${id}/episodebynumber?season=${seasonId}&number=${bolumId}`);
+  let res = await appAxios.get(`shows/${id}/episodebynumber?season=${seasonId}&number=${bolumId}`);
   data.value = res.data;
-  console.log(res.data);
+
+  const search = `${showName} ${seasonId}x${bolumId} promo`;
+  res = await appAxios.get(`${import.meta.env.VITE_APP_VIDEO_API}&q=${search}&key=${import.meta.env.VITE_APP_KEY}`);
+  video.value = res.data.items[0];
 });
 
 const date = computed(() => DateTime.fromISO(data.value.airstamp).toLocaleString({ month: "long", day: "numeric", year: "numeric" }));

@@ -24,7 +24,7 @@ const routes = [
     {
         name: "Keşfet",
         path: "/kesfet",
-        component: () => import("../views/Home.vue")
+        component: () => import("../views/DiscoverShows.vue")
     },
     {
         name: "Dizi",
