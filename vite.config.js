@@ -6,28 +6,25 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     vue(),
-    // VitePWA({
-    //   includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
-    //   workbox: {
-    //     sourcemap: true
-    //   },
-    //   strategies: 'injectManifest',
-    //   manifest: {
-    //     name: 'TV Maze',
-    //     short_name: 'TV Maze',
-    //     icons: [
-    //       {
-    //         src: '/android-chrome-192x192.png',
-    //         sizes: '192x192',
-    //         type: 'image/png',
-    //       },
-    //       {
-    //         src: '/android-chrome-512x512.png',
-    //         sizes: '512x512',
-    //         type: 'image/png',
-    //       },
-    //     ],
-    //   },
-    // }),
+    VitePWA({
+      includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+      strategies: 'injectManifest',
+      manifest: {
+        name: 'Dizi TV',
+        short_name: 'Dizi TV',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/android-chrome-384x384.png',
+            sizes: '384x384',
+            type: 'image/png',
+          },
+        ],
+      },
+    }),
   ]
 })
