@@ -136,7 +136,8 @@ const getShow = async () => {
 watch(
   () => router.currentRoute.value.params.slug,
   () => {
-    getShow();
+    if(router.currentRoute.value.name === "Detay")
+      getShow();
   }
 );
 

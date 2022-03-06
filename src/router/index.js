@@ -2,11 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        name: "Home",
-        path: "/",
-        component: () => import("../views/Home.vue")
-    },
-    {
         name: "Detay",
         path: "/dizi/:slug",
         component: () => import("../views/Detail.vue")
@@ -44,6 +39,11 @@ const routes = [
     {
         name: "Kanallar",
         path: "/kanal",
+        component: () => import("../views/Home.vue")
+    },
+    {
+        name: "Home",
+        path: "/",
         component: () => import("../views/Home.vue")
     },
 ]
