@@ -2,14 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        name: "Detay",
-        path: "/dizi/:slug",
-        component: () => import("../views/Detail.vue")
-    },
-    {
         name: "Episode",
         path: "/dizi/:slug/sezon-:seasonId/bolum-:bolumId",
         component: () => import("../views/Episode.vue")
+    },
+    {
+        name: "Detay",
+        path: "/dizi/:slug",
+        component: () => import("../views/Detail.vue")
     },
     {
         name: "Oyuncu",
@@ -20,11 +20,6 @@ const routes = [
         name: "Keşfet",
         path: "/kesfet",
         component: () => import("../views/DiscoverShows.vue")
-    },
-    {
-        name: "Dizi",
-        path: "/dizi",
-        component: () => import("../views/Home.vue")
     },
     {
         name: "Trend",

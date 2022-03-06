@@ -40,7 +40,6 @@ const toggle = () => (isOpened.value = !isOpened.value);
 const links = [
   { name: "Anasayfa", link: "Home" },
   { name: "Keşfet", link: "Keşfet" },
-  { name: "Dizi", link: "Dizi" },
   { name: "Trend", link: "Trend" },
   { name: "Oyuncular", link: "Oyuncular" },
   { name: "Dizi Kanalları", link: "Kanallar" },

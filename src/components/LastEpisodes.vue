@@ -18,17 +18,17 @@
     <!-- header end -->
 
     <!-- episodes -->
-    <div class="grid grid-cols-1 px-4 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-3">
+    <div v-if="lastEpisodes" class="grid grid-cols-1 px-4 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-3">
       <router-link
         :to="{
           name: 'Episode',
           params: {
             slug:
-              toLower(item.show?.name) +
+              toLower(item?.show?.name) +
               '-' +
-              item.show.id,
-            seasonId: item.season,
-            bolumId: item.number
+              item?.show.id,
+            seasonId: item?.season,
+            bolumId: item?.number || 0
           },
         }"
         v-for="item in lastEpisodes"
