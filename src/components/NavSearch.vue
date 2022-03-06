@@ -17,10 +17,7 @@
           :to="{
             name: 'Detay',
             params: {
-              slug: item.show.name
-                .toLowerCase()
-                .replace(/ /g, '-')
-                .replace(/[^\w-]+/g, '') + '-' + item.show.id,
+              slug: toLower(item.show.name) + '-' + item.show.id,
             },
           }"
           v-for="(item, index) in results"
@@ -41,6 +38,7 @@ import { ref, watch, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 import appAxios from "../utils/appAxios";
 import UilSearch from "./Icons/UilSearch.vue";
+import toLower from '../utils/toLower'
 defineProps({
   nav_class: String,
 });

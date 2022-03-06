@@ -1,18 +1,11 @@
 <template>
   <swiper class="w-full h-full pb-4" :autoplay="autoplay" :modules="modules" :slides-per-view="count" :space-between="10" navigation>
-    <swiper-slide
-      class="p-1 relative cursor-pointer transition-all delay-75 hover:bg-[#2b2d36] rounded-lg inline-flex flex-col bg-[#1e2029]"
-      v-for="(show, index) in shows"
-      :key="index"
-    >
+    <swiper-slide class="p-1 relative cursor-pointer transition-all delay-75 hover:bg-[#2b2d36] rounded-lg inline-flex flex-col bg-[#1e2029]" v-for="(show, index) in shows" :key="index">
       <router-link
         :to="{
           name: 'Detay',
           params: {
-            slug: show.name
-              .toLowerCase()
-              .replace(/ /g, '-')
-              .replace(/[^\w-]+/g, '') + '-' + show.id,
+            slug: toLower(show.name) + '-' + show.id,
           },
         }"
       >
@@ -37,6 +30,7 @@ import { ref } from "vue";
 import EvaMoreVerticalFill from "./Icons/EvaMoreVerticalFill.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Scrollbar, A11y, Autoplay } from "swiper";
+import toLower from "../utils/toLower";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";

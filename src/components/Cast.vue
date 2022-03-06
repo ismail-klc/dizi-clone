@@ -6,10 +6,7 @@
         :to="{
           name: 'Oyuncu',
           params: {
-            slug: item.person?.name
-              .toLowerCase()
-              .replace(/ /g, '-')
-              .replace(/[^\w-]+/g, ''),
+            slug: toLower(item.person?.name),
           },
         }"
         v-for="(item, index) in cast"
@@ -27,6 +24,7 @@
 </template>
 
 <script setup>
+import toLower from '../utils/toLower'
 defineProps({
   cast: Array,
 });

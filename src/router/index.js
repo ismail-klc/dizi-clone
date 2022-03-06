@@ -18,7 +18,7 @@ const routes = [
     },
     {
         name: "Oyuncu",
-        path: "/oyuncular/:slug",
+        path: "/oyuncu/:slug",
         component: () => import("../views/People.vue")
     },
     {

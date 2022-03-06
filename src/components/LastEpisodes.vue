@@ -24,10 +24,7 @@
           name: 'Episode',
           params: {
             slug:
-              item.show?.name
-                .toLowerCase()
-                .replace(/ /g, '-')
-                .replace(/[^\w-]+/g, '') +
+              toLower(item.show?.name) +
               '-' +
               item.show.id,
             seasonId: item.season,
@@ -59,6 +56,7 @@ import PhMonitorPlayFill from "./Icons/PhMonitorPlayFill.vue";
 import TwemojiFlagForFlagTurkey from "./Icons/TwemojiFlagForFlagTurkey.vue";
 import { computed } from "@vue/runtime-core";
 import { DateTime } from "luxon";
+import toLower from '../utils/toLower'
 
 defineProps({
   lastEpisodes: Array,

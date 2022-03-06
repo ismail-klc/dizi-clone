@@ -73,13 +73,7 @@
                   :to="{
                     name: 'Episode',
                     params: {
-                      slug:
-                        show.name
-                          .toLowerCase()
-                          .replace(/ /g, '-')
-                          .replace(/[^\w-]+/g, '') +
-                        '-' +
-                        show.id,
+                      slug: toLower(show.name) + '-' + show.id,
                       seasonId: currentSeason,
                       bolumId: parseInt(index + 1),
                     },
@@ -106,6 +100,7 @@ import { useRouter } from "vue-router";
 import Cast from "../components/Cast.vue";
 import Checkbox from "../components/Checkbox.vue";
 import appAxios from "../utils/appAxios";
+import toLower from "../utils/toLower";
 
 const show = ref({});
 const cast = ref([]);

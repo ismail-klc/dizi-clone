@@ -24,20 +24,14 @@
           :to="{
             name: 'Detay',
             params: {
-              slug:
-                show._embedded.show.name
-                  .toLowerCase()
-                  .replace(/ /g, '-')
-                  .replace(/[^\w-]+/g, '') +
-                '-' +
-                show._embedded.show.id,
+              slug: toLower(show._embedded.show.name) + '-' + show._embedded.show.id,
             },
           }"
           class="text-lg text-white truncate hover:text-zinc-300"
         >
           {{ show._embedded.show.name }}
-          <span v-if="show._embedded.show.rating.average" class="p-1 bg-green-600 rounded-lg">{{ show._embedded.show.rating.average }}</span> </router-link
-        >
+          <span v-if="show._embedded.show.rating.average" class="p-1 bg-green-600 rounded-lg">{{ show._embedded.show.rating.average }}</span>
+        </router-link>
         <p class="text-xs text-gray-400">{{ getGenres(show._embedded.show.genres) }}</p>
 
         <div class="flex flex-col mt-3 text-gray-300 sm:flex-row">
@@ -55,6 +49,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import appAxios from "../utils/appAxios";
 import { DateTime } from "luxon";
+import toLower from "../utils/toLower";
 
 const cast = ref({});
 const shows = ref([]);
